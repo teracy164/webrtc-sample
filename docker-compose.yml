@@ -8,6 +8,7 @@ services:
       - '443:443'
     environment:
       DOMAINS: 'www.teracy.tk -> http://server:3000'
+      STAGE: $STAGE
 
   server:
     image: node:12-alpine
@@ -22,7 +23,9 @@ services:
     command: [/bin/sh, -c, npm install && npm run dev]
 
   turn-server:
-    build: ./turnserver
+    image: instrumentisto/coturn
+    volumes:
+      - ./turnserver/turnserver.conf:/etc/coturn/turnserver.conf
     container_name: turn-server
     ports:
       - 3478:3478
