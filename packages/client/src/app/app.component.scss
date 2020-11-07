@@ -1,0 +1,10 @@
+@import '../assets/scss/valiables.scss';
+
+.header {
+    height: $headerHeight;
+    background-color: rgb(255,200,200);
+
+    a {
+        padding: 3px 10px;
+    }
+}

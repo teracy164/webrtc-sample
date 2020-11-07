@@ -1,0 +1,10 @@
+<div class="panel">
+    <div class="video-panel">
+        <div class="my-video" *ngIf="isAvailableLoalMedia">
+            <video [srcObject]="localMediaStream" autoplay muted playsinline></video>
+        </div>
+        <div class="remote-video" *ngIf="isAvailableRemoteMedia">
+            <video [srcObject]="remoteMediaStream" autoplay muted playsinline></video>
+        </div>
+    </div>
+</div>

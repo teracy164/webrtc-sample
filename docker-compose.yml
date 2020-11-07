@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      DOMAINS: 'www.teracy.tk -> http://server:3000'
+
+  server:
+    image: node:12-alpine
+    container_name: server
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/develop
+    links:
+      - turn-server
+    working_dir: /develop
+    command: [/bin/sh, -c, npm install && npm run dev]
+
+  turn-server:
+    build: ./turnserver
+    container_name: turn-server
+    ports:
+      - 3478:3478
+      - 49152-65535:49152-65535/udp
+    network_mode: host
