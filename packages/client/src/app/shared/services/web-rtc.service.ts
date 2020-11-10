@@ -66,8 +66,9 @@ export class WebRTCService {
     private createPeerConnection() {
         const pcConfig: RTCConfiguration = {
             iceServers: [
-                { urls: "stun:turn-server:3478" },
-                { urls: "turn:turn-server:3478", "username": "username", "credential": "password" },
+                { urls: "stun:www.teracy.tk:3478" },
+                { urls: "turn:www.teracy.tk:3478?transport=udp", "username": "username", "credential": "password" },
+                { urls: "turn:www.teracy.tk:3478?transport=tcp", "username": "username", "credential": "password" },
             ]
         };
 
